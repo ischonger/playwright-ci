@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe("App splash page", async () => {
+test.describe("App main page", async () => {
   test('has title', async ({ page }) => {
     await page.goto('https://playwright.dev/');
 
@@ -21,15 +21,13 @@ test.describe("App splash page", async () => {
   test('test', async ({ page }) => {
     await page.goto('https://demo.playwright.dev/todomvc/#/');
     await page.getByPlaceholder('What needs to be done?').click();
-    await page.getByPlaceholder('What needs to be done?').fill('eat lunch');
-    await page.getByPlaceholder('What needs to be done?').press('Enter');
-    await expect(page.locator('body')).toContainText('1 item left');
-    await page.getByLabel('Toggle Todo').check();
     await page.getByPlaceholder('What needs to be done?').click();
-    await page.getByPlaceholder('What needs to be done?').fill('go to bed');
+    await page.getByPlaceholder('What needs to be done?').fill('feed cat');
     await page.getByPlaceholder('What needs to be done?').press('Enter');
-    await page.getByRole('link', { name: 'Completed' }).click();
-    await page.getByRole('link', { name: 'Active' }).click();
     await expect(page.locator('body')).toContainText('1 item left');
+    await page.getByTestId('todo-title').click();
+    await page.getByLabel('Toggle Todo').check();
+    await page.getByRole('link', { name: 'Active' }).click();
+    await expect(page.locator('body')).toContainText('0 items left');
   });
 });
