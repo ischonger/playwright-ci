@@ -11,14 +11,6 @@ const TODO_ITEMS = [
 ] as const;
 
 test.describe('New Todo', () => {
-  test('test', async ({ page }) => {
-    await page.goto('https://demo.playwright.dev/todomvc/#/');
-    await page.getByPlaceholder('What needs to be done?').click();
-    await page.getByPlaceholder('What needs to be done?').fill('buy food');
-    await page.getByPlaceholder('What needs to be done?').press('Enter');
-    await expect(page.getByLabel('Toggle Todo')).not.toBeChecked();
-  });
-  
   test('should allow me to add todo items', async ({ page }) => {
     // create a new todo locator
     const newTodo = page.getByPlaceholder('What needs to be done?');
